@@ -1,19 +1,21 @@
 package org.example;
 
 import java.io.*;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
-
+import java.net.*;
 
 
 public class Client {
 
+    /*
+    För E-nivå
     ObjectInputStream objectInputStream = null;
     ObjectOutputStream objectOutputStream = null;
     Socket socket = null;
+    */
+
+
+    //används i både E och C nivå
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    private java.lang.Object InetAddress;
     InetAddress host = InetAddress.getLocalHost();
 
     public Client() throws UnknownHostException, IOException, InterruptedException, ClassNotFoundException {
@@ -21,9 +23,23 @@ public class Client {
     }
 
     public void runClient() throws IOException, ClassNotFoundException, InterruptedException {
+        /*
 
+       KOD FÖR C-NIVÅ, har fel i sig. Vet inte varför. skrev av precis som det stog.
 
+        MulticastSocket chatMulticastSocket = new MulticastSocket(Server.port);
 
+        chatMulticastSocket.joinGroup(Server.group);
+        String msg = "";
+        System.out.println("type a message for the server: ");
+        msg = br.readLine();
+
+        DatagramPacket data = new DatagramPacket(msg.getBytes(), 0, msg.length(), Server.group, Server.port);
+        chatMulticastSocket.send(data);
+
+        chatMulticastSocket.close();
+
+   -----------------------------------------------------------------------------------------------------------
         /*
 
         KOD FÖR E-NIVÅ

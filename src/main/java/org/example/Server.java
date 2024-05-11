@@ -1,15 +1,26 @@
 package org.example;
 
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.ArrayList;
 
 public class Server {
 
-    static ServerSocket serverSocket;
-
     public static int port = 1234;
+
+    /*
+    variabler för C-nivå
+
+    public static InetAddress group = InetAddress.getByName("255.4.5.6");
+     */
+
+
+
+
+    /*
+    FÖR E-nivå koden
+
+    static ServerSocket serverSocket;
 
     static {
         try {
@@ -17,23 +28,40 @@ public class Server {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
 
      Socket socket;
+
      BufferedReader bufferedReader;
+
      BufferedWriter bufferedWriter;
 
-    ArrayList<Client> clients = new ArrayList<>();
+    } */
 
-    public Server() throws IOException {
-
+    public Server() throws IOException, ClassNotFoundException {
+    runServer();
     }
 
     public void runServer() throws IOException, ClassNotFoundException {
 
-
-
         /*
+        KOD FÖR C-NIVÅ, har fel. Kopierat precis från uppgiften.
+
+        MulticastSocket serverMulticastSocket = new MulticastSocket(port);
+
+        serverMulticastSocket.joinGroup(group);
+        System.out.println("Joingroup method is called.");
+
+        while(true){
+            byte buf[] = new byte[1024];
+            DatagramPacket data = new DatagramPacket(buf, buf.length);
+            serverMulticastSocket.receive(data);
+
+            String msg = new String(data.getData()).trim();
+            System.out.println("Message received from client: " + msg);
+        }
+
+         -----------------------------------------------------------------------------------------------------------
+
                 KOD FÖR E-NIVÅ
 
         //create the socket server object
@@ -60,7 +88,7 @@ public class Server {
 
             ----------------------------------------------------------------------------------------------
 
-            KOD SOM JAG FÖRSÖKTE MED FRÅN BÖRJAN. iNTE E-NIVÅ
+            KOD SOM JAG FÖRSÖKTE MED FRÅN BÖRJAN. INTE E-NIVÅ
 
        System.out.println("waiting for client to connect");
         while(true){
@@ -91,8 +119,7 @@ public class Server {
 }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Server server =  new Server();
-        server.runServer();
+        Server server = new Server();
 
     }
 }
