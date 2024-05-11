@@ -13,6 +13,7 @@ public class Client {
     ObjectOutputStream objectOutputStream = null;
     Socket socket = null;
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private java.lang.Object InetAddress;
     InetAddress host = InetAddress.getLocalHost();
 
     public Client() throws UnknownHostException, IOException, InterruptedException, ClassNotFoundException {
