@@ -4,45 +4,21 @@ import java.io.*;
 import java.net.*;
 
 
-public class Client {
-
-    /*
-    För E-nivå
+public class ClientEnivå {
     ObjectInputStream objectInputStream = null;
     ObjectOutputStream objectOutputStream = null;
     Socket socket = null;
-    */
 
 
-    //används i både E och C nivå
+
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     InetAddress host = InetAddress.getLocalHost();
 
-    public Client() throws UnknownHostException, IOException, InterruptedException, ClassNotFoundException {
+    public ClientEnivå() throws UnknownHostException, IOException, InterruptedException, ClassNotFoundException {
         runClient();
     }
 
     public void runClient() throws IOException, ClassNotFoundException, InterruptedException {
-        /*
-
-       KOD FÖR C-NIVÅ, har fel i sig. Vet inte varför. skrev av precis som det stog.
-
-        MulticastSocket chatMulticastSocket = new MulticastSocket(Server.port);
-
-        chatMulticastSocket.joinGroup(Server.group);
-        String msg = "";
-        System.out.println("type a message for the server: ");
-        msg = br.readLine();
-
-        DatagramPacket data = new DatagramPacket(msg.getBytes(), 0, msg.length(), Server.group, Server.port);
-        chatMulticastSocket.send(data);
-
-        chatMulticastSocket.close();
-
-   -----------------------------------------------------------------------------------------------------------
-        /*
-
-        KOD FÖR E-NIVÅ
 
         for(int i=0; i<5;i++){
 
@@ -50,8 +26,8 @@ public class Client {
 
 
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            out.println("Sending request to Socket Server");
-            out.println("Type bye to exit, Write what you want to send to the server: ");
+            System.out.println("Sending request to Socket Server");
+            System.out.println("Type bye to exit, Write what you want to send to the server: ");
             String message  = br.readLine();
             objectOutputStream.writeObject(message);
 
@@ -59,12 +35,14 @@ public class Client {
 
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             message = (String) objectInputStream.readObject();
-            out.println("Message: " + message);
+            System.out.println("Message: " + message);
 
             objectInputStream.close();
             objectOutputStream.close();
             Thread.sleep(100);
         }
+
+        /*
 
         ------------------------------------------------------------------------------------------------------
 
@@ -98,10 +76,10 @@ public class Client {
             socket.close();
             Thread.sleep(100);
         }
-*/
+         */
     }
 
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
-        Client client = new Client();
+        ClientEnivå clientEnivå = new ClientEnivå();
     }
 }
