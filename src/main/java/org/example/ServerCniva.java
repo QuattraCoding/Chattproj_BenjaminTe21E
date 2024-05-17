@@ -5,19 +5,19 @@ import java.net.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class ServerCnivå {
-    public static int port = 1234;
+public class ServerCniva {
+    public static int port = 12345;
     public static InetAddress group;
 
     static {
         try {
-            group = InetAddress.getByName("255.4.5.6");
+            group = InetAddress.getByName("225.4.5.6");
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public ServerCnivå() throws IOException, ClassNotFoundException {
+    public ServerCniva() throws IOException, ClassNotFoundException {
         runServer();
     }
 
@@ -39,6 +39,6 @@ public class ServerCnivå {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        new ServerCnivå();
+        new ServerCniva();
     }
 }
