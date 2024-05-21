@@ -16,12 +16,6 @@ public class ServerEnivå {
             throw new RuntimeException(e);
         }
 
-     Socket socket;
-
-     BufferedReader bufferedReader;
-
-     BufferedWriter bufferedWriter;
-
     }
 
     public ServerEnivå() throws IOException, ClassNotFoundException {

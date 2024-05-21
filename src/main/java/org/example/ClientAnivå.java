@@ -14,6 +14,7 @@ public class ClientAnivå {
     DatagramPacket additionData;
     DatagramPacket subtractionData;
     DatagramPacket multiplicationData;
+    String previousmsg;
 
     public ClientAnivå() throws IOException {
         runClient();
@@ -35,6 +36,7 @@ public class ClientAnivå {
 
                 System.out.println("Skriv in nummer som du vill addera med ett plus emellan (+): ");
                 String msg = br.readLine();
+                previousmsg= msg;
                 do{
                     if(msg.contains("+") && !msg.matches("\\D+")){
                         additionData = new DatagramPacket(msg.getBytes(), 0, msg.length(), ServerAnivå.group, ServerAnivå.port);
@@ -72,11 +74,13 @@ public class ClientAnivå {
             case 3 ->{
                 System.out.println("Skriv in nummer som du vill multiplicera med en stjärna emellan (*): ");
                 String msg = br.readLine();
+
                 do{
                     if(msg.contains("*") && !msg.matches("\\D+")){
                         multiplicationData = new DatagramPacket(msg.getBytes(), 0, msg.length(), ServerAnivå.group, ServerAnivå.port);
                         System.out.println("skickar tal till servern...");
                         multicastSocket.send(multiplicationData);
+
                         break;
                     }
                     else {
@@ -99,9 +103,13 @@ public class ClientAnivå {
             System.out.println("Data received. " + data.getData());
             String dataGot = new String(data.getData()).trim();
             System.out.println(dataGot);
-            Integer dataReceived = Integer.parseInt(dataGot);
-            System.out.println("Svaret är : " + dataReceived);
-            break;
+            if (!previousmsg.equals(dataGot)){
+            //Integer dataReceived = Integer.parseInt(dataGot);
+            System.out.println("Svaret är : " + dataGot);
+            break;}
+            else{
+                System.out.println("same mess");
+            }
 
         }
         /*
